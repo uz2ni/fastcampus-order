@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -39,9 +40,9 @@ public class Partner {
 
     @Builder
     public Partner(String partnerName, String businessNo, String email) {
-        if(partnerName == null) throw new RuntimeException("empty partnerName"); //TODO: [1]공통 에러 응답 선언
-        if(businessNo == null) throw new RuntimeException("empty businessNo"); //TODO: [2]빈 값 처리 외부 라이브러리 사용하기
-        if(email == null) throw new RuntimeException("empty email");
+        if(StringUtils.isEmpty(partnerName)) throw new RuntimeException("empty partnerName");
+        if(StringUtils.isEmpty(businessNo)) throw new RuntimeException("empty businessNo"); //TODO: [2]빈 값 처리 외부 라이브러리 사용하기
+        if(StringUtils.isEmpty(email)) throw new RuntimeException("empty email");
 
         this.partnerToken = "abcde";
         this.partnerName = partnerName;
@@ -51,4 +52,9 @@ public class Partner {
         this.createdAt = ZonedDateTime.now(); //TODO: [3]audit 기능 사용하여 일자 생성 자동화
         this.updatedAt = ZonedDateTime.now();
     }
+
+    public void enable() { this.status = Status.ENABLE; }
+
+    public void disable() { this.status = Status.DISABLE; }
+
 }
