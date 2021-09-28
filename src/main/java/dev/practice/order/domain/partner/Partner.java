@@ -15,7 +15,7 @@ import java.time.ZonedDateTime;
 @Entity
 @NoArgsConstructor
 @Table(name = "partners")
-public class Partner {
+public class Partner extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +24,6 @@ public class Partner {
     private String partnerName;
     private String businessNo;
     private String email;
-
-    private ZonedDateTime createdAt;
-    private ZonedDateTime updatedAt;
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -49,8 +46,6 @@ public class Partner {
         this.businessNo = businessNo;
         this.email = email;
         this.status = Status.ENABLE;
-        this.createdAt = ZonedDateTime.now(); //TODO: [3]audit 기능 사용하여 일자 생성 자동화
-        this.updatedAt = ZonedDateTime.now();
     }
 
     public void enable() { this.status = Status.ENABLE; }
