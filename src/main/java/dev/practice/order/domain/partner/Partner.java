@@ -41,7 +41,7 @@ public class Partner extends AbstractEntity {
     @Builder
     public Partner(String partnerName, String businessNo, String email) {
         if(StringUtils.isEmpty(partnerName)) throw new RuntimeException("empty partnerName");
-        if(StringUtils.isEmpty(businessNo)) throw new RuntimeException("empty businessNo"); //TODO: [2]빈 값 처리 외부 라이브러리 사용하기
+        if(StringUtils.isEmpty(businessNo)) throw new RuntimeException("empty businessNo");
         if(StringUtils.isEmpty(email)) throw new RuntimeException("empty email");
 
         this.partnerToken = TokenGenerator.randomCharacterWithPrefix(PREFIX_PARTNER);
