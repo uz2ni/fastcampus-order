@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class PartnerServiceImpl implements PartnerService {
-
+    private final String a = "c";
     private final PartnerStore partnerStore;
     private final PartnerReader partnerReader;
 
